@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 3,
+      "title": "Clife",
+      "author": "Biko"
+    },
+    {
+      "id": 4,
+      "title": "clife",
+      "author": "Biko"
+    },
+    {
+      "id": 6,
+      "title": "dfsdfsdf",
+      "author": "Biko"
+    },
+    {
+      "id": 7,
+      "title": "xvxvxc",
+      "author": "Biko"
+    },
+    {
+      "id": 8,
+      "title": "zsffsfs",
+      "author": "Biko"
+    },
+    {
+      "id": 9,
+      "title": "FGDFG",
+      "author": "Biko"
+    },
+    {
+      "id": 12,
+      "title": "poiuytretyu",
+      "author": true
+    },
+    {
+      "id": 45,
+      "title": "jhgfdsa",
+      "author": true
+    },
+    {
+      "id": 23,
+      "title": "ghjkl",
+      "author": true
+    },
+    {
+      "id": 585665,
+      "title": "oiuytre",
+      "author": true
+    }
+  ]
+}

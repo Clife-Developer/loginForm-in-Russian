@@ -1,0 +1,1245 @@
+<!--
+
+    Commands
+
+    1. ng serve(runs the default application)
+    2.ng serve --port=4500(changing the port number to 4500)
+    3.ng new ProjectName(creating a new angular project)
+    4.npm install @angular/cli(installs angular command line interface)
+    5.npm install bootstrap --save(the last save part is to save it)
+    6.ng --version(for angular version)
+    7.ng generate/ng g(used to generate modules,directives etc.. )
+       eg ng/ generate component service-name/ng g c component-name
+        ng generate service service-name
+    8.ng test(runs all unit tests,tests are ran using karmer runner)
+    9.ng e23(runs end to end tests)    
+    10.ng update(update old CLI to recent ones in your angular)
+    11.ng build(compiles javascrript code,used for promoting code to high env)
+    12.ng lint(code syntax linting)
+
+
+
+    Modules
+    -modules are logical functionality 
+    -a group of functional components
+    -modules have,componts,service,pipe ,directives etc
+    -every modules has to be difine by @NgModule
+    -inside a module,we can declare componets,or imports modules
+    -we can also mention the default or first component to load
+
+    decorators
+    -functions that will return a function
+    -decorators are invokked at run time
+    -allows us to invoke a function
+    -Typescript features used for passing meta data
+    -all decorators have @ as prefix
+
+    types of decorators in angular
+    -classs decorator-@NgModule,@Component
+    -property decorators-@input,@output
+    -Method Decorstors@hostListener
+    -Parameter Decorator-@inject
+   
+    
+    decorators,are the way to pass meta data  to angular application
+
+    Directives
+    Types of directives
+    1.Component dir
+     -every angular app must have atleast one comp.
+     -have its own template
+     -Events attached
+    2.Structural dir
+    -they always start with *
+     -update structure of the view
+     -*ngFor,*ngIf,*ngSwitch
+        ngIf(for conditional statements,like if else)
+        ngSwitch(switch case statement to evaluate some expressions,true of false)
+    3.Attribute dir
+     -ngStyle,ngClass 
+
+     three things in ngSwitch
+     -ngSwitch
+     -ngSwitchCase
+     -ngSwitchDefault
+
+     ngClass
+     -the expression should be a string,if you are using a static name
+
+     Data Binding
+     -is the connecting of data from view/html Doc to Controller/Component class
+
+     Types of Data Binding
+     1.One way data binding
+     -means we are sending data from template/view to controller
+
+     Component to View
+     -interpolation
+     -Property Binding
+     -Style Binding
+     -Attribute Binding
+
+    view to component
+    -event binding
+
+
+  Practice
+COMPONENT.TS
+ /*
+  test=true;
+
+  obj={name:'Clife',id:23};
+
+  val=this.obj.name;
+
+  employers=[
+    {age:20,Name:'Clife',Timer:22,position:1},
+    {age:90,Name:'John',Timer:22,position:1},
+    {age:10,Name:'Simba',Timer:22,position:1},
+    {age:30,Name:'Gift',Timer:22,position:1},
+    {age:60,Name:'Snow',Timer:22,position:1}
+    ,{age:660,Name:'Bricks',Timer:22,position:1}
+    ,{age:40,Name:'Jeff',Timer:22,position:1}
+  ];
+
+  cols='col';
+  cols2='col2';
+ 
+ words=true;
+ cols='red';
+ colz='green';
+
+ user=[
+   {
+     Age:22,Name:'Clife'
+   }
+   ,
+   {
+    Age:32,Name:'Mhlongo'
+  }
+  ,
+  {
+    Age:44,Name:'Baloyi'
+  }
+ ]
+
+ inp=3;
+
+ inside='column';
+ outside='row';
+
+
+ //Interpolation
+ val='This is number';
+ num=32;
+
+ col='red';
+ prints="This is example of prop. binding";
+ p='check';
+ placeh="search";
+  
+
+  links1="http://betway.com";
+ links="http://google.com";
+
+
+
+ popOver(id)
+ {
+   alert("you clicked popOver of id: "+id);
+ };
+  */
+
+//HTML
+  <h1 [ngStyle]="{color:'blue'}">welcome to This {{title}}</h1>
+<app-tasks></app-tasks>
+
+<button *ngIf="test; then ShowCase;else ShowLess" [ngStyle]='{color:"red"}' >Click</button>
+<ng-template #ShowCase>The button Clicked true</ng-template>
+<ng-template #ShowLess>The button Clicked false</ng-template>
+
+
+<div [ngSwitch]="val">
+  
+  <div *ngSwitchCase="'two'">The value passed is one</div>
+  <div *ngSwitchCase="'two'">The value passed is two</div>
+  <div *ngSwitchCase="'Clife'">The value passed is Clife</div>
+  <div *ngSwitchDefault>The value passed is not found</div>
+</div>
+
+<table class="table">
+  <tr >
+    <th>Age</th>
+    <th>Name</th>
+    <th>Index</th>
+    <th>Timer</th>
+    <th>Position</th>
+  </tr>
+
+  <tr *ngFor="let emp of employers;index as i;first as f;even as e">
+    <td>{{emp.age}}</td>
+    <td>{{emp.Name}}</td>
+    <td>{{i}}</td>
+    <td>{{f}}</td>
+    <td>{{e}}</td>
+  </tr>
+  
+</table>
+
+<div [ngClass]="[cols2,cols]">
+  Cover Me
+</div>
+
+<div [ngClass]="{'cols2':true,'cols':false}">
+  Cover Me
+</div>
+
+
+<h1  [ngStyle]="{'color':cols,'background-color':colz}">Welcome to the Hood</h1>
+
+<div *ngIf="words;then Show;else ShowLess">This means the div is true
+</div>
+<ng-template #Show>
+  <table class="table">
+     <tr >
+       <th>Age</th>
+       <th>Name</th>
+     </tr>
+
+     <tr *ngFor="let emp of user">
+       <td>{{emp.Age}}</td>
+       <td>{{emp.Name}}</td>
+     </tr>
+  </table>
+</ng-template>
+<ng-template #ShowLess>This means it is false</ng-template>
+
+<div [ngSwitch]='inp'>
+  <span *ngSwitchCase="1">This is one</span>
+  <span *ngSwitchCase="1">This is two</span>
+  <span *ngSwitchCase="1">This is three</span>
+  <span *ngSwitchDefault>This is Default</span>
+</div>
+
+<div [ngClass]='[inside,outside]'>
+  Check the Button
+</div>
+
+<div [ngClass]="{'inside':true,'outside':true}">
+  Check the Button
+</div>
+
+
+     View to Component
+     -event binding
+
+     2.Two way data binding
+     -data flows from view to component and vise vesa
+
+     Interpolation
+     -is the technique that allows the user to bind data from component to view
+     -you easy declare a variable in the component,then use {{}} in the view to attach the data
+       eg.<div>
+              {{val}}:{{num}}
+          </div>
+
+
+     Property Binding
+     -is a technique that allows the user to binds element's property from component to view
+     -we are binding the property of an element with the data from component
+        eg. <div [ngStyle]='{"color":col}'>This is an example of Property binding</div>
+            <p [innerHTML]='prints'></p>
+            <input [placeholder]="placeh" type="text" name="" id="">
+            <div [ngClass]="'check'">ggggggggggggggg</div>
+
+     Attribute Binding
+     -a technique that allows user to bind attribute of an element from component to template/view
+        eg.to define a new attribute in angular,we use:
+           [attr.Attribute_Name]="variable"
+          <a [href]="links1" [attr.GetLink]="links">Google</a>
+          
+     Event Binding
+     -is a technique that allows user to bind events from component to template/view
+     -it is a one way data flow,from view to component
+      eg.<button (click)="popOver(200)">Click Here</button>
+
+
+
+    Two way data Binding
+    -is a techniique that allows a user to bind events of an element from component to view and vise versa
+    -this data binding is a combination of property binding and event binding
+    -it uses ngModel property
+      eg .<input [(ngModel)]='FirstName'  type="text" name="" id="" />
+          <button (click)='press()'>Click Here</button>
+          <div>{{ FirstName }}</div>
+            
+         FirstName= '';
+         press()
+          {
+           console.log(this.FirstName);
+          }
+
+    PIPES
+    -are used to transform data
+    -or to convert data input to desired data
+    -it can be applied in the view or input data format
+    -it's declared/written using |
+
+    Types of pipes
+    1.Built in pips
+      -uppercase
+      -lowecase
+      -Date
+      -currency
+      -JSON
+
+    2.Parametized pipe
+    -we can pass a parameter to a pipe
+    
+    3.Chaining pipes
+    -we can connect multiple pipes to a data input
+
+    4.Custom pipe
+    -we can create our own custom pipe for various data formats
+
+
+    BUILT IN PIPES
+    <div>
+     Converting the object to json data format
+      {{ obj | json }}
+    </div>
+
+
+    <div>
+      -Converting the name to uppercase
+      {{ obj.name | uppercase }}
+    </div>
+    <div>
+     Converting the object to date
+       with parameters  that you want the date to show
+     {{ obj.db | date:'dd MMMM' }}
+    </div
+    <div>
+    Converting the object to currency
+    {{ obj.money | currency:'USD' }}
+    </div>
+
+
+     PARAMETIZED PIPES
+    -we use : symbol to pass a parameter
+    <div>
+     Converting the object to date
+     with parameters  that you want the date to show
+      The parameters help output the data, d/m/y, will output the data starting with date,month and year
+     date parameters
+     :shortDate(it converts the date to a shorter format,d/m/y and time)
+     :longDate(it converts the date to a longer format ,d/m/y and time with GTM time)
+    {{ obj.db | date:'dd MMMM' }}
+     </div
+     <div>
+     Converting the object to currency  
+     {{ obj.money | currency:'ZAR':'code' }}
+     </div>
+
+     CHAINING PIPES
+     -simple connecting more than one pipe to a data
+       syntax: variable | Pipe | AnotherPipe
+       <div>
+      Chaining pipe 
+     {{ obj.db | date:'dd MMMM yyyy' | uppercase }}
+      </div>
+
+      CUSTOM PIPES
+      -we create pipes in our angular app
+      -custom pipe is generated using CLI
+      -command: ng generate pipe pipeName
+      -we also need to import pipe and pipeTransform from the angular/core
+      -pipes are declared with @pipe, and the selector name
+
+      ROUTING
+      -   :{provide:LocationStrategy,useClass:HashLocationStrategy}
+         then secondly,import strategy you wana use eg: import { LocationStrategy, HashLocationStrategy } from '@angular/common'; 
+      -is a mechanism that that is used by angular for paths and routes of angular applications
+      -it helps in navigation between various viewa in our angular appplication
+      -it  is singleton,meaning it has one instance in an angular app
+      -its built in module in "Router
+      -all angular routes/paths/navigations are handled by angular router package
+      -we create route array,whenenever user searches for route,it will search in the route array
+         ROUTING 
+                -Base HREF
+                -Roouter module
+                -Router Outlet
+                -Configure Route
+                -Router Link
+                -Parametized Route
+                -Redirecting Route
+                -Wildcard Route
+                -Query Route
+                -Child Route
+                -Modules with specific routing
+                -lazy loading
+                -Route cards
+
+      ROUTING STRATEGIES
+      -we need to add this to our module in the providers
+         :{provide:LocationStrategy,useClass:HashLocationStrategy}
+         then secondly,import strategy you wana use eg: import { LocationStrategy, HashLocationStrategy } from '@angular/common'; 
+
+      -before an app,first plan your routing strategy
+      -routing strategies-hashLocation(/#/home) and pathLocation(/home)
+      -by default all angular app are using path location
+
+      1.BASE HREF
+        -evry angular app has base href
+        -angular app is SPA(single page app),meaning there is only one HTML file
+        -the default base href is "/"
+        -it is present in index.html file
+
+        changing a base href: ng build --base-href="demo/"
+
+      
+      2.ROUTING MODULE
+      -is a placeholder for configuring all routes and navigations in one module
+      -easy to maintain and debug
+      -to generate the app routing module,use:
+      Command;  ng generate module app-routing --flat -module=app
+
+      ensure you import the file to module: import { AppRoutingModule } from './app-routing.module';
+
+      3.Router Outlet
+      -allows us to define where output should be displayed
+      -can be specified in app module or individual modules
+      -if you check the app.comp.html,there's <router-outlet>,meaning all data is displayed in this component/file
+      -we can have more than one router outlets
+
+      4.Configuring routes
+      -simple means putting routes together in a module
+      {path:PathName, component:CompName}
+
+     5.Parametized routes
+    -we can send parameters to routes
+      eg: home/22
+      To access the parameters and declare private var:ActivatedRoute
+        import { ActivatedRoute } from '@angular/router'; to a component.ts
+
+        constructor(private activatedP:ActivatedRoute) {
+        this.activatedP.params.subscribe((data)=>{
+        this.para=data.id;
+          });
+    
+    Types of parameters
+    -QueryParams//we use this one when we wanna fetch query data
+    -params//this one when we wanna fecth params/paths
+    6.QueryParams
+    -eg /search.php?tag=4
+
+    7.Redirecting Routes
+    incase there is an empty path,the browser should automaticaly be redirected to the selected route
+    -to set rediractory,you need {path:'',redirectTo:'path',pathMatch:'full'}
+    -pathMatch is a must as "full"
+
+    8.Wildcard Routes
+    -intercepts any invalid URLs in our application
+    -when no matching routes are found in the routes array,the router does not know where to go and hence resulst in console errors
+    -wildcards defined as {path:'**''}
+    -usually,a component named PageNotFound is maped as best practice
+
+    9.Child Route
+    -child routes are configured to create more meaningful URL
+    -we can configure any number of child routes to parent route
+       eg: customers-parent route
+      view-customer/view-child routes
+           customer/view/info
+           customer/view/view/gallery
+               eg: path:'page',
+             children:[
+           {path:'view/:par', component:ViewComponent},
+           {path:'check', component:CheckComponent}
+          ]}
+    
+          Lazy loading
+          -is a module that helps in large apps with alot of routes
+          -lazy loading keeps initial bundles sizes smaller,which decreases the loading time
+          -it actually means "load modules when they are required",instead of the
+          app loading all modules right after it started.
+          -lazy loading avoids the loading of large size of modules,including the
+          modules you do not need
+          -lazy loading increases an app's perfomance
+
+          To create lazy loading
+          1.create feature module
+          2.configure loadChildren in appRouting
+
+          feature loading,is a module specific to certain functionality
+          to load lazy module,we need to load its children using the property
+          'loadChildren'
+
+          to create module: ng g module ModuleName --route routeName --module MainModueName(where you wanna place the module)
+          eg.ng g module orders --route orders --module app.module
+          -it will automatically create a path in the app routing and update it
+          -to verify if it is lazy loading,check the network in dev.toolds on your browser
+
+          this is how it works,
+          -you generate the guard using ng g guard guardName,then choose the type
+          -then go to app routing and add a path that should be checked before allowing a path to be visited
+           eg: {path:'admin',component:ViewComponent,CanActivate:[guardName]}
+          -before allowing user to visit admin path,it will first check will guardName,if guardName
+          return true,it will grand an access,if not, it wont.
+          -guardName is where you write your aunthetications
+
+
+     10.Route guards
+        -used to prevent users from navigating through the paths/route without it being checked first
+        -it secure the route paths
+        eg, if the user is has logged in,they should see /CertainRoute
+            if else,/CertainRoute should be hidden
+
+        -ng g guard guradName, is the Command used to create a route guard
+        -then inject the guard in your module,under providers
+        
+        types of route guards
+        1.CanActivate-checks to see if a user can visist a route
+        2.CanActivateChild-checks to see if a user can visit a route's child/children
+        3.CanDeactivate-checks to see if a user can exit a route
+        4.Resolve-perfoms route data retrieval before route activation
+        5.CanLoad-checks to see if user can route to a module that lazy loaded
+      
+        
+
+      ANGULAR FORMS
+
+      
+      Installing bootstrap,
+      We have two ways of installing bootstrap
+      1.Control Delivery network(CDN)-include the boostrap link in the head of index.html
+      2.Node package Manager(NPM)-installing bootstap to the application
+        using comm: npm install bootstrap jquery popper --save
+        DONT miss this last step,without it,bootstrap wont work
+       -go to angular.json,and include the path of style and script that
+       is under Architecture 
+        "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+
+       "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+
+      Common Forms
+      -login
+      -forgit
+      -register
+      -checkout
+      -Contact Us
+
+      Two types of form
+      1.Template driven form(you need to import FormsModule,in order to work with forms)
+      -easy to use
+      -all validations are defined in the template
+
+      2.reactive form(alsp known as Dynamic forms)
+      -all the form elemens and validations are handled in the component class
+      -can control better data binding
+      -we need to import ReactiveFormsModule
+
+      angular supports form in:
+      -Two data binding
+      -Change Tracking 
+      -validations
+      -error Handling
+      -unit testing
+
+      TEMPLATE DRIVEN FORMS
+      -firstly,import the import { FormsModule} from '@angular/forms'; in app.module
+
+      <form #SignCheck (ngSubmit)="signM(SignCheck)"></form>//this means you are calling signM when you submit the form,then pass the form name
+
+
+       signM(FormInfo: NgForm)
+    {
+    //to print the data from form
+      console.log(FormInfo.value.ElementName);
+     }
+
+      Validations
+      -ALways REMEMBER to ADD The name of an element(input),if not,validations might not work
+      -to prevent users from entering unwanted data we use validation
+      -angular provides common validators like minLength,maxLength, required
+      -Angular maintains state information:ng-touched
+                                          :ng-dirty
+                                          :ng-untouched
+                                          :ng-prestine
+                                          :ng-valid
+                                          :ng invalid
+                                
+      -ways of handling validations
+      1.Hightlight the elements with errors
+        use : element.ng-invalid.ng-touched{border:red;} in css comp
+          this means when the Element has been touched,angular will add ng-touched class to the element,and if the
+          element is invalid/empty,angular will add ng-invalid class.
+          remember to add "required" attribute
+      
+
+      2.Disabling the submit button
+        by adding attribute [disabled]="!formName.valid"
+      
+      3.Custom field level validation-show hide erroes messages
+        <input #firstname="ngModel" email ngModel>//the email attribute makes sure that the entered value is an email
+        <span *ngIf="firstname.touched && !firstname.valid">please enter email</span>
+
+      
+        REACTIVE FORMS
+        -with reactive forms,we can handle data biding easily
+        -import ReactiveFormModule
+        Steps to use ReactiveForms
+           1.import ReactiveFormModule to your app.module,and add the module name in Imports
+           2.when creating a form, use "FormGroup" directive and give it a name
+             :also use "formControlName" attribute
+           2.2 import{ FormGroup, FormControl,FormBuilder} from '@angular/forms' ; to form.comp.ts
+          3.after adding [formGroup]="preferedName",import{ formGroup, FormControl,formBuilder} from '@angular/forms' to form.comp.ts
+          4.use the same name that you gave here,in comp.ts as
+            checkoutForm:FormGroup;
+          5.create an instance of FormBuilder in the form.com.ts inside constructor as private, constructor(private formBuilder:FormBuilder)
+          6.add all these: in form comp,
+                              //this(checkoutForm) is the same name you gave your form
+                              checkoutForm:FormGroup;
+                               constructor(private formBuilder:FormBuilder) {
+                              /* then difine controls,contronls are the names(formcontrolName) of the elements you have given in the template*/
+                               this.checkoutForm=formBuilder.group(
+                             {
+                     EmailAddr:new FormControl(),
+                     QuantityAdd:new FormControl(),
+                     terms:new FormControl()
+                  }
+                  );
+
+      
+      Reactive Form Validations
+      -for validations,you add "validatores" in the import
+        : import{ FormGroup, FormControl,FormBuilder,Validators} from '@angular/forms' ;
+      -then change replace the form controls in the elements with ['',validators.required],
+        instead of EmailAddr:new FormControl(),, write  EmailAddr:['',Validators.required],
+        then go to css and set the class..input.ng-invalid.ng-touched{border-color:red}
+
+      <div class="container" >
+         <form [formGroup]="loginForm"  (ngSubmit)="FormMethod()" class="pt-3">
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" placeholder="Enter email" formControlName="EmailAd" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" placeholder="Enter password" formControlName="PasswordAd" id="pwd">
+        </div>
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" formControlName="TermsAd" type="checkbox"> Agree to terms
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary"  [disabled]="!checkoutForm.valid">Login</button>
+      </form>
+      </div>
+       
+      ts. side  
+         loginForm:FormGroup;//creating a FormGroup instance 
+  constructor(private formBuilds:FormBuilder) 
+  {
+    this.loginForm=formBuilds.group(//creating agroup, of form elements
+      {
+        EmailAd:new FormControl(),//form elements
+        PasswordAd: new FormControl(),
+        TermsAd:new FormControl()
+      }
+    );
+   };
+     
+     turn off form validation
+     -<button type="submit" class="btn btn-primary"  [disabled]="!checkoutForm.valid">Login</button>
+     -turn off form validation is the same everywhere
+
+     highlighting validation
+     -input.ng-invalid.ng-touched
+       {
+         border-color:red;
+       }
+     
+    custom validations,you need to add the modules[validators]
+    -checkoutForm:FormGroup;
+   constructor(private formBuilder:FormBuilder)//we are building the form using FormBuilder
+   {
+    /* then difine controls,contronls are the names(formcontrolName) of the elements you have given in the template*/
+    this.checkoutForm=formBuilder.group(//creating a group of form elements,what are these elements? :below
+      {
+        /*
+        //these are form control
+        EmailAddr:new FormControl(),
+        QuantityAddr:new FormControl(),
+        terms:new FormControl()
+         */
+
+          //for validations
+        EmailAddr:['',Validators.required,Validators.email,Validators.minLength(3)],
+        QuantityAddr:['',Validators.required],
+        //for checkbox,it has to be required true
+        terms:['',Validators.requiredTrue]
+      }
+
+      REACTIVE FORMS-GET VALUES
+      -We can read the value(s) of the form
+      -To read the value of the whole form,use (this.FormName.value)
+      -To read the value of individual form control(this.formName.get('fieldName').value)
+      - to get from values,we have Two ways: 
+             1. console.log(this.checkoutForm.value.EmailAddr);
+
+               loginM()
+             {
+             2. console.log(this.loginForm.get('Emailz').value);
+             }
+
+     
+      TEACTIVE FORMS-Set Values
+      -We have two ways of setting a values to the form
+       1.this.formName.setValue(),
+        -with this method,you must set all values of a form,without 
+        leaving any field or form control set
+            eg:this.checkoutForm.setValue(
+            {
+            EmailAddr:'ntombi@gmail.com',
+            QuantityAdd:2682,
+            terms:true
+       
+          }
+      
+            
+      2.this.formName.patchValue()
+        -with this method,you can choose which form fields to set
+            eg:this.checkoutForm.patchValue(
+          {
+           EmailAddr:'ntombi@gmail.com',
+            QuantityAdd:2682,
+       
+          }
+
+      REACTIVE FORM-resert a Form
+      -We always need to reset the form after a user has entered data,to avoid duplications of data
+      -we use the method :reset(),this.formName.reset()
+        eg:clearForm()
+                 {
+                   this.checkoutForm.reset();
+                 }
+      
+      REACTIVE FORM-Handling Value Changes
+      -ValueChanges is a property of FormControl,formgroup and FormArray
+      -it returns an Observable
+      -Then we need to subsrcibe to the observable to read the value
+      -it is a property in AbstractControl
+      -it emits/fires/calls an event every time there is any change in the values of the control changes
+        We have two ways to read the valueChanged: 1.for a field, 2.for the whole form
+
+        1.for specified field
+         eg ,this.checkoutForm.get('EmailAddr').valueChanges.subscribe(data=>
+        {
+          this.valChange=data;
+        });
+
+        2.tracking the whole form
+        -you can also track the whole form innsuch a way that whenever theres a change,it will automatically capture the data
+        -eg : eg ,this.checkoutForm..valueChanges.subscribe(data=>
+        {
+          this.valChange=data;
+        });
+
+
+      REACTIVE FORM-status Change
+      -statusChange is a property of  FormControl,formgroup and FormArra
+      -it returns an Observable
+      -Then we need to subsrcibe to the observable to read the value
+      -statusChanges will emit/fire/call an event every time there is a change in the validation status of the control changes
+      -we can track an element's status either of a specified form control,or the whole form
+
+      1.validation of individual formcontrol
+       -this.checkoutForm.get('EmailAddr').statusChanges.subscribe(data=>
+        {
+          this.valChange=data;
+        });
+
+      2.validation of the whole form
+      -this.checkoutForm.statusChanges.subscribe(data=>
+        {
+          this.valChange=data;
+        });
+
+      Form control
+      -any form field,becomes a form control
+      Form group
+      -is a group of form controls
+
+      REACTIVE FORM-Form Array
+      -form array is a class that tracks the value and validity state of array of formcontrol,formarray,formgroup
+      -aggregates the values of child form control into an array
+      -the status of array,is calculated by reducing the statuses of its children
+      -if any of the controls is invalid,the whole form array becomes invalid eg: 
+                                                                                 formArray
+                                                                                 [
+                                                                                   formControl-valid
+                                                                                   formControl-valid
+                                                                                   formControl-valid
+                                                                                   formControl-invalid(because this form control is invalid,
+                                                                                      the whole form array is gonna be invalid)
+                                                                                        
+                                                                                     ]
+       FORM REACTIVE-FORM ARRAY-Nested Form Array
+      -has the ability to add rows and to remove rows intoa form array via form groups                                                   
+                   //this is nested form array,this form array assigns values then removing the default form array
+            this.checkoutForm.get('items').setValue(
+         [
+           {
+            itemId:'3',
+            itemName:'hey',
+            itemDesc:'Cheeese',
+            itemDone:['',Validators.requiredTrue]
+               }
+            ]
+         );                                                             
+       
+      
+
+      FORM REACTIVE-FORM ARRAY-adding Dynamic formGroups(rows)
+      -There will be times where we dont know how many rows to expect
+      -so you simple gonna have to append/push a form control into a form array
+
+      here,we use get if we want a function to return a value,
+      //here we return the formArray,
+      get list_F()
+      {
+         return this.loginForm.get('lists') as FormArray;
+      }
+       addRows()
+      {
+        //then we get the length of the form array
+        const F_length=this.list_F.length;
+        //then create a new formGroup
+        const newList= this.logs.group(
+        { 
+         lit1:[F_length+1],
+         lit2:['']        
+        }); 
+        //in the returned form array,we add the new formGroup
+       this.list_F.push(newList);
+      }
+
+      FORM REACTIVE-FORM ARRAY-removing Dynamic formGroups(rows)
+      -when you want to remove dynmic rows
+      //REMOVING ROWS
+    get list_F()
+     {
+       return this.loginForm.get('lists') as FormArray;
+     }
+      addRows()
+     {
+       const F_length=this.list_F.length;
+     const newList= this.logs.group(
+      { 
+        lit1:[F_length+1],
+        lit2:['']        
+       });
+      
+       
+     this.list_F.push(newList);
+   }
+   removeRows(id)
+   {
+     this.list_F.removeAt(id);
+   }
+
+
+
+   Observables
+   -we need to import observable to the comp,to comp.ts
+   -is a sequence of data that is produced/emitted asynchronously/in defferent times over a period of time
+   -Observables is also an interface that handles a variety of common asynchronous operations
+   -They are the prefered/recommended technique for event handling,asynchronous programming and handling of multiple values
+
+   Observer
+   -by using Observer,we keep track of Observable,or we are listening to Observable
+   -we can set when to start listening to the Observable
+   -observer has methods,next(),error(),complete()
+
+   Subscribe
+   -Observable alone does not do anything
+   -we need a subscriber,subscribe simple means processing
+   -so we need to process the data sent from Observable
+   -we can unsubscribe from a subscriber
+
+   Dependency Injection
+   -is an important app design pattern
+   -is the ability to add the functionality of components at runtime
+   -DI lets you supply data to a component from an injectable service class
+   -dependecies are services or objects that a class needs to perfom its function
+   -the class is called as services
+   -we will use the decorator '@Injectable' to let the components know that this is a dependency
+
+   Services
+   -service is like a class with functions and values,that are injected into components through Dependecy Injection(DI) during run time 
+   -Allows us to create a functionality that will be shared among components and modules
+   -services are singleton
+   -We use DI to inject service into an app
+   -we nedd to create  and inject services in components where we want to use them
+   -services are commmonly used for making HTTP request to our endpoints APIs to request and receive the response
+   -a service can have a value,methods or a combination of both
+   -to generate a service ng g service <service-Name>
+   -Injectable module in the services informs angular that we can inject the services into other components    
+   -A class that has the injectable decorator is a service class
+   -to call the service methods directly to the HTML file,you need to declare the service instance as public
+
+   HttpClient
+   -is used in perfoming http requests and responses
+   -HttpClient Service is used to initiate http request and responses in angular
+   -httpClient methods: get(),post() delete(),head(),jsonp(),patch() <etc class="">
+   -we need to import httpClientModule in our app module
+
+    To Create-usually POST method used
+    To Read-usually GET method is used
+    To Update-usually PUT method used
+    To delete-usually DELETE method used
+
+  -TO work with this,you need to install a mock server(npm i -g json-server)
+  -add APi(response file) file into the server(eg db.json)
+  -then run command json-server --watch .\db.json(API file)
+
+  GET METHOD
+  -to retrieve or get data from an endpoint/server we use get method
+  -to get or read data
+  -get requires url,get('url')
+  -get responsse type is of observable,meaning we need to subscribe to the observable
+  -Get has methods like: Headers,of type HttpHeaders
+                       : Params,of HttpParams
+
+  Steps:
+       step 0.make sure you have endpoint/db/url which returns data when requested
+       step 1.import HttpClientModule in our App Module
+       step 2.import HttpClient in the service or component wherever we are making the http request
+       step 3.inject HttpClient in the constructor method of the class
+       step 4.Implement the GET method call
+       step 5.imporrt the service into the required calling componennt class
+       step 6.call the method to make the http request
+
+   -In our case,we inject the httpClientModule to service component,because we wanna make our request there,and we wanna share the ethod among 
+   components
+   -Check(New-p components)
+
+   POST METHOD
+   -post method passes the API/url and the form body parameter
+   -it creates what is passed in the body parameter in the database then 
+    return the results like get,in observable form
+   -when you want to create data use post
+   -post('url',body)
+   -it can also take headers and params paraeters as objects
+   -post also gets a response that is observation
+     synt; createContacts(bodyForm)
+        {
+           return this.httpClient.post('http://localhost:3000/posts',bodyForm);
+       }
+   
+
+      
+   PUT METHOD
+   -is used for updating/change/modify data
+   -put method makes a call to submit/changed
+   -it takes two parameters,the API/url and body
+   -it can also take headers and params paraeters as objects
+   -all HttpClient methods return an observables
+   -put(IDtoUpdate,updatedData)
+
+
+   DELETE METHOD
+   -when you call the API/url using and request to delete something
+   -you need to pass the id of the data youn wanna delete
+   -it can also take headers ,params etc
+      eg:         deleteData(delId)
+             {
+               const del='http://localhost:3000/posts/'+delId;
+               return this.httpClient.delete(del);
+             }
+     
+    HttpHEADERS
+    -When calling the API using Http methods,you can also pass {headers:} as a parameter in object form
+    -To use the HttpHeader class,we need to import its service/the class "HttpHeaders"
+    -you need to create an instance of the method after importing int eg: const ht=new HttpHeaders()
+    -HttpHeader has methods:Append
+                           :Has
+                           :Get
+                           :Keys
+                           :getAll
+                           :Set
+                           :delete
+    -HttpHeader has content type:,and Authorization and other parameters
+    -append is used to add the headers, eg: ht.append(content-type:..)
+     eg: let httpheaders=new HttpHeaders(
+      {
+        'content-type':'application/json',
+        'Authorization':'Bucker25'
+      }
+
+    );
+     //to add a custom heeader(s)
+     httpheaders=httpheaders.set('surname','Mhlongo');
+    
+    return this.httpClient.get('http://localhost:3000/posts', {headers:httpheaders});
+
+
+    HttpParams
+    -firstly you need to import the HttpParams class,then create an instance of it
+    -params cannot be modified-directly
+    -http://facebook/home?name=clife,"name=clife" is a param8
+    -HttpParams has methods:Append
+                            :Has
+                            :Get
+                            :Keys
+                            :getAll
+                            :Set
+                            :delete
+    -fromObject:{
+        id:'2'
+      }
+    -The fromObject is a method that adds the params/query to the URl
+    -you either use fromIbject/fromStrinng
+    -you are calling the API,the add the query(params)through fromObject to the URL
+    -so the data returned is gonna be specifically from the param mentioned
+    
+
+    HttpInterceptors
+    -Interceptors handles the Httprequest and Httpresponse
+    -Interceptor is between client and server
+    -when a request i made,The request goes to Interceptor,processed then passed to server
+    eg:we can set the Intercepto to do something whenever Http calls something
+    -to generate the Inteceptors,use command ng g interceptor <interceptorName>
+    -include it in the app.class="Module.ts
+    -also import HTTP_INTERCEPTORS to the app.module
+    -then go to the Providers:[
+      write: {provide:HTTP_INTERCEPTORS,useClass:ClassNameInterceptor,multi:true}]
+    -now the Interceptor is ready
+
+   
+
+    TESTING
+
+    Types of Test
+    -Unit Test
+    -End 2 End(E2E) Test
+    -Skip Test
+    -Specific Test
+
+    Testing Utilities
+    -Angular natively supports jasmine and Karma
+    -it has commands to run unit testing and End 2 End testing
+    
+    Jasmine Framework
+    -is an Open source Testing for Javascript
+    -it is Behavior Driven Development framework
+    -You write the test scripts in Jasmine then run them in Karma
+    
+    Karma Framework
+    -is an Open source Testing for Javascript
+    -The framework is natively intergrated into the angular apps by default
+    -is used for running and executing the test scripts
+    -You write the test scripts in Jasmine then run them in Karma
+    -The confi. file for karma is in src/karma.conf.js
+
+    protractor Framework
+    -is an End to End Open source for testing Angular apps
+    -It also works as a solution intergrator that combines powerful technologies such as Npdejs,selenium.jasmine etc
+    -it allows us to test the app just like a real user,since it runs the test using
+    a browser
+
+
+    1.Unit Testing
+    -testing small independent module,services,pipes etc..
+    -you test small piece of the bigger picture
+    -We test the smaller pieces of the bigger picture/piece
+    -Frameworks used are Jasmine and Karma
+
+    2.End 2 End testing
+    -Automate the entire end 2 end function flow
+    -Helps in building automated test suites
+    -Protractor and Behavioural Driven Development(BDD) frameworks are used
+
+    spec.ts
+    -The components always have the file spec.ts
+    -whenever there is spec.ts, it simple means this is a unit testing script
+    -this is where we write our unit testing scripts
+
+    e2e-spec.ts
+    -This is a test file for End to End testing,
+    -it has the testing scripts inside
+
+    Coverage
+    -all our tests report and coverage details are captured in this file
+
+    main.ts
+    -this is the starting point of our app
+    -without this file,the whole app will never work
+    -it tells angular where to begin
+
+    platformBrowserDynamic() in main.ts
+    -this is a method inside main.ts where we let the angular know where to start the
+    application and which modules to load
+
+    test.ts
+    -so test.ts test the code in the main.ts
+
+    difference between test.ts and main.ts
+    -main.ts is the starting poind of our angular app,also loads module,then
+    -test.ts tests the code in the main.ts
+
+
+    Executing/Running Unit test
+    -The focus is on the testing a small piece of the angular appplication
+    -to run the tests/karma we use command: ng test
+    -Karma runs the test scripts(spec.ts)
+    -green bullets means the test has passed
+    -red cross means the test failed
+    -in the summary line,we can see the total tests failed,passed and skipped
+    -The confi. file for karma is in src/karma.conf.js
+    -when running karma,you  can also specify the browser you wanna use
+     using the command : ng test --browsers=chrome
+    -but it will first check if chrome is included in the karma config.js
+    -to include other browsers,please check the notes written inside karma.config.js file
+
+
+    Executing/Running E2E Test
+    -End to End test means automating the application's workflow for a functionality
+    end to end 
+    -we use Protractor for running end to end test
+    -we use the command : ng e2e, to run end to end test
+    -the e2e config is inside e2e file,written Protractor.e2e-spec.ts
+    -Protractor will also give the number of e2e-specs executed failed and passed
+    -We can also customize the Protractor config.
+    -you can also change the port when you run the test
+    command: ng e2e --port=400
+
+    3.Skip Test
+    Ways to skip Tests
+    1.using cli-for new application
+     -ng new -skipTests
+    
+    2.By adding 'skipTests' to true in schematics in angular.json-for existing app
+     -SkipTests:true;
+
+    3.By adding 'x' in front of the tests
+    -xdescribe
+    -xit
+
+    Running Specific Tests
+    1.For unit tests
+     -add f in front of the tests
+     -fdescribe
+     -Fit
+
+    2.For End to End tests
+     -add a specific specs in the e2e spec definition
+     -in protractor.cong.js ->mention which specs we need to run
+
+     Code Coverage
+     -usually client will ask you to submit the code coverage report
+     -if the coverage is more than 85%, the code is considered to be good
+
+     To generate code coverage
+     -by adding "codeCoverage" in the tests inside angular.json,you go to an.json,go to test,then options then add "codeCoverage"=true; inside options
+     -by adding the CLI: ng test option -code-coverage/when you run this command,it will run the angular app and give you the coverage report
+
+
+    Build and Deployment of Angular App
+    -Building an app means compiling an app
+    -We are basically checking for syntax errors etc
+    -We are also converting the typescript code ito Es6,because most of the browsers do not support typescript
+    -The new js files (main.js) are given as outputs into a directory
+    
+    Deployment
+    -Once we get the output files,we need to deploye them to the server
+    -Automatic or manually
+    -in most Enterprises ,we will have to deploy files to cloud platform
+     eg of cloud platform:AWS,Azure,GCP,AliCloud,DigitalOcen etc
+    
+    Some common deployment platforms
+     -Firebase
+     -Azure
+     -Amazon s3
+     -GitHub
+     -NPM
+
+    Ahead Of Time(AOT) Compilation
+    -Since a browser cannot understand the angular app
+    -You need compile the app and files can converted to js script so that the browser understands it
+
+    AOT advantages
+    -faster rendering
+    -smaller angular framework download size
+    -detects template errors earlier
+    -better security
+
+    Angular offers two ways of Compiling apps
+    -Just in Time(JIT)-which compiles your app in the browser at runtime.This was the default until angular8
+    -Ahead of Time(AOT)-which compiles your app and libraries and build time,this is the default since Angular9
+
+    How to Build and Deploy Angular Apps
+    -To buid an angular App, we use: ng buid command
+    -The output of the built app is stored in the "dist" folder
+    -whenever we say deploy,we copying the dist folder to the hosting website folder
+
+
+
+    CREATING A FULL STACK APP called "product"
+
+    1.it should:have its own routes
+               :support lazy loading
+               :have ability to see all product iventory
+               :Ability to view a specific product for details
+               :ability to update the product inventory
+               :Ability to delete the product
+               :search products by catagory
+               :Ability to read categories as drop down in UI
+
+    CRUD(create,read, update,delete)
+    -Create:HTTP POST used
+           :creating a new resource via API
+    
+    -Read:HTTP GET METHOD
+         :retrive data from API
+
+    -Update:HTTP PUT used
+           :update existing data from API
+
+    -Delete:Delete an existing data from API
+           :HTTP DELETE used
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    -->

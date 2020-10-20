@@ -7,7 +7,9 @@ module.exports = function (config) {
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
+      require('karma-chrome-launcher'),//this means we are using chrome to launch karma
+      //if you wanna also run it in firebox,you need to add firefox here,then install the config required in firefox 
+      //using:npm i
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -21,11 +23,11 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
-    port: 9876,
+    port: 9876,//this is a default port ,that can be changed to any port number
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome'],//if you wanna also run it in firebox,you need to add firefox also here
     singleRun: false,
     restartOnFileChange: true
   });

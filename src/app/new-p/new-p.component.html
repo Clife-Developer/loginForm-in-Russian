@@ -1,0 +1,46 @@
+<p class="bg-primary text-center p-3">new-p works!</p>
+
+
+<div>
+    <p *ngFor="let val of obj;let i=index">{{ val.id }} {{ val.title }} {{ val.author }}</p>
+</div>
+
+
+<div class="container">
+    <form #formName="ngForm" (submit)="addNewContact(formName)">
+        <div class="form-group">
+          <label for="Number">Email address:</label>
+          <input type="number" class="form-control" name="id" placeholder="Enter number" ngModel #num="ngModel" id="Number"   required>
+          <small class="text-danger form-text" *ngIf="num.touched && !num.valid">Please Enter Number</small>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" name="title" placeholder="Enter password" #pass="ngModel" ngModel id="pwd"  required>
+          <small class="text-danger form-text" *ngIf="pass.touched && !pass.valid">Please Enter Email</small>
+        </div>
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" name="author" type="checkbox" ngModel required> Remember me
+          </label>
+        </div>
+        <button type="submit" [disabled]="!formName.valid" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+<span class="pb-4">
+    <button type="button" class="btn btn-primary" (click)="updateData(4)">put id 4</button>
+    <button type="button" class="btn btn-primary" (click)="deleId(5)">Delete id 5</button>
+    <button type="button" class="btn btn-primary" (click)="returnPar()">returnPar</button>
+    
+</span>
+
+
+
+
+
+<!--
+<ul>
+    <li *ngFor="let val of obj;let i=index">
+        {{ val.name }}
+    </li>
+</ul>
+-->
